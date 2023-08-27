@@ -1,0 +1,10 @@
+# Environment [virtual：venv]
+venv/
+
+# Environment [VisualStudioCode]
+.vscode/
+
+# Environment [Program]
+*.spec
+/__pycache__/
+*.pyc
