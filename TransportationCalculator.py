@@ -3,6 +3,7 @@ from datetime import datetime, date
 import jpholiday
 import configparser
 # import datetime
+from ConfigReader import ConfigReader
 
 
 class TransportationCalculator:
@@ -10,10 +11,15 @@ class TransportationCalculator:
         # 設定情報をconfig.iniから読み取る
         config = configparser.ConfigParser()
         config.read('config.ini')
+
+        # 使用例
+        config_file_path = "config.ini"  # 設定ファイルのパス
+        config_reader = ConfigReader(config_file_path)
+
+        one_way_cost = config_reader.get_setting("Settings", "one_way_cost")
+        telework_weekdays = config_reader.get_setting("Settings", "telework_weekdays").split(",")
+        days_off = config_reader.get_setting("Settings", "days_off")
         
-        self.one_way_cost = int(config.get('Settings', 'one_way_cost'))
-        self.telework_weekdays = config.get('Settings', 'telework_weekdays').split(', ')
-        self.paid_leave_days = int(config.get('Settings', 'paid_leave_days'))
     
     def calculate_transportation_cost(self):
         # 現在の年月を取得

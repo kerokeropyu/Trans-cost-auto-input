@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+from ConfigReader import ConfigReader
 
 # TransportationCalculatorのインスタンスを作成
 calculator = TransportationCalculator()
@@ -21,15 +22,20 @@ driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())
 
 # ウェブサイトにアクセス
 driver.get("https://service.kaonavi.jp/")
+# ID、PASSWORDを入力し、ログインボタンを押下
+driver.find_element(By.XPATH, '//*[@id="login_id"]').send_keys(s.id)
+driver.find_element(By.XPATH, '//*[@id="login_password"]').send_keys(s.password)
+driver.find_element(By.XPATH, '//*[@id="login_button"]').click()
 
+time.sleep(3000)
 # 必要な入力フィールドに交通費を入力
-input_field = driver.find_element_by_id("transportation_cost_input_id")  # 入力フィールドのIDを指定
-input_field.clear()  # 一度入力内容をクリア
-input_field.send_keys(str(total_cost))  # 交通費を入力
+# input_field = driver.find_element_by_id("transportation_cost_input_id")  # 入力フィールドのIDを指定
+# input_field.clear()  # 一度入力内容をクリア
+# input_field.send_keys(str(total_cost))  # 交通費を入力
 
-# 送信ボタンをクリック（ボタンの要素とIDやクラス名を使って特定）
-submit_button = driver.find_element_by_id("submit_button_id")  # 送信ボタンのIDを指定
-submit_button.click()
+# # 送信ボタンをクリック（ボタンの要素とIDやクラス名を使って特定）
+# submit_button = driver.find_element_by_id("submit_button_id")  # 送信ボタンのIDを指定
+# submit_button.click()
 
 # 送信完了を待つために一時停止（必要に応じて調整）
 time.sleep(5)
