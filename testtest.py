@@ -1,6 +1,10 @@
 from TransportationCalculator import TransportationCalculator
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 # TransportationCalculatorのインスタンスを作成
@@ -9,8 +13,8 @@ calculator = TransportationCalculator()
 # 交通費を計算
 total_cost = calculator.calculate_transportation_cost()
 
-# WebDriverを自動的にダウンロードおよび設定
-driver = webdriver.Chrome(ChromeDriverManager().install())
+# 実行時のバージョンと同様の ChromeDriverをインストール
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 # # Seleniumのドライバーを設定（Chromeドライバーを使用する例）
 # driver = webdriver.Chrome(executable_path="path_to_chromedriver.exe")  # Chromeドライバーのパスを指定

@@ -40,13 +40,13 @@ class TransportationCalculator:
         # 祝日を取り除く
         holidays = jpholiday.between(date(year, month, 1), date(year, month, num_days))
         holidays_and_weekends = [holiday for holiday in holidays]
-        for day in range(1, num_days + 1):
-            if datetime(year, month, day).weekday() >= 5 or datetime(year, month, day) in holidays_and_weekends:
-                holidays_and_weekends += 1
+        # for day in range(1, num_days + 1):
+        #     if datetime(year, month, day).weekday() >= 5 or datetime(year, month, day) in holidays_and_weekends:
+        #         holidays_and_weekends += 1
     
-        # 有給取得日数を考慮
-        work_days = num_days - len(holidays_and_weekends) - paid_leave_days
-        return work_days
+        # # 有給取得日数を考慮
+        # work_days = num_days - len(holidays_and_weekends) - paid_leave_days
+        return 1
     
     def _except_telework(self, year, month, tele_weekdays):
         # テレワーク日数を計算
